@@ -1,0 +1,228 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Dunkler Hintergrund-Gradient */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Hauptstil für die Login-Box mit deutlich dunklerem Hintergrund */
+.login-box {
+    position: relative;
+    /* Deutlich dunklerer Hintergrund */
+    background-color: #2a2a3a; /* Dunkelgrau mit leichtem Blaustich */
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Animierter Regenbogen-Rahmen - genau wie im Beispiel */
+.login-box:before, 
+.login-box:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, 
+        #fb0094, #0000ff, #00ff00, #ffff00, 
+        #ff0000, #fb0094, #0000ff, #00ff00, 
+        #ffff00, #ff0000
+    );
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    border-radius: 12px; /* Angepasst an die Login-Box */
+    animation: steam 20s linear infinite;
+}
+
+/* Animation für den fließenden Regenbogen-Effekt - exakt wie im Beispiel */
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Umgekehrte Animation für den Button */
+@keyframes steamReverse {
+    0% {
+        background-position: 400% 0;
+    }
+    50% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 400% 0;
+    }
+}
+
+/* Blur-Effekt für den äußeren Glanz - exakt wie im Beispiel */
+.login-box:after {
+    filter: blur(50px);
+}
+
+/* Anpassung der Textfarben für den dunklen Hintergrund */
+h2 {
+    color: #ffffff; /* Weiß statt dunkelgrau */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #cccccc; /* Hellgrau statt dunkelgrau */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background-color: #3a3a4a; /* Dunklerer Hintergrund für Input-Felder */
+    border: 1px solid #4a4a5a; /* Dunklerer Border */
+    border-radius: 5px;
+    font-size: 16px;
+    color: #ffffff; /* Weiße Schrift */
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #764ba2;
+    outline: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #dddddd; /* Hellere Farbe für Labels */
+    font-weight: 500;
+}
+
+/* Container für den Button, um den Glow-Effekt zu ermöglichen */
+.btn-container {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Neuer Ansatz für den Button mit abgerundeten Ecken */
+.btn-login {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    background: transparent; /* Transparenter Hintergrund */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 2; /* Höherer z-index als die Pseudo-Elemente */
+    transition: background 0.3s ease;
+    border-radius: 5px;
+    border: none; /* Kein Standard-Border */
+}
+
+/* Pseudo-Element für den Gradient-Rahmen mit abgerundeten Ecken */
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px; /* Abgerundete Ecken */
+    padding: 2px; /* Breite des Rahmens */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none; /* Damit Klicks durch den Rahmen gehen */
+}
+
+/* Fülle den Button beim Hover */
+.btn-container:hover .btn-login {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Verstecke den Rahmen beim Hover */
+.btn-container:hover .btn-login::before {
+    opacity: 0;
+}
+
+/* Animierter Regenbogen-Rahmen für Button - nur bei Hover sichtbar */
+.btn-container:before, 
+.btn-container:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(225deg, /* Andere Richtung als die Box (45deg -> 225deg) */
+        #fb0094, #0000ff, #00ff00, #ffff00, 
+        #ff0000, #fb0094, #0000ff, #00ff00, 
+        #ffff00, #ff0000
+    );
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: 1;
+    border-radius: 7px; /* Angepasst an den Button */
+    animation: steamReverse 15s linear infinite; /* Andere Geschwindigkeit und umgekehrte Animation */
+    opacity: 0; /* Standardmäßig unsichtbar */
+    transition: opacity 0.3s ease; /* Sanftes Ein-/Ausblenden */
+}
+
+/* Blur-Effekt für den äußeren Glanz des Buttons */
+.btn-container:after {
+    filter: blur(20px); /* Etwas weniger Blur für den Button */
+}
+
+/* Zeige den Effekt nur bei Hover */
+.btn-container:hover:before,
+.btn-container:hover:after {
+    opacity: 1;
+}
+
+.error-message {
+    color: #ff6b6b; /* Helleres Rot für bessere Lesbarkeit */
+    background-color: rgba(255, 107, 107, 0.1); /* Transparentes Rot */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.invalid-feedback {
+    color: #ff6b6b; /* Helleres Rot */
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.is-invalid {
+    border-color: #ff6b6b; /* Helleres Rot */
+}
